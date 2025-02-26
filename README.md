@@ -16,7 +16,7 @@ Given the limited time for the challenge, I focused on developing a few tests bu
     ```md
     BASEURL="https://opensource-demo.orangehrmlive.com/web/index.php"
     ```
-NOTE: `.env` file is generally not checked in as it can have application/test secrets. Hence this is also added to `.gitignore` 
+NOTE: `.env` file is generally not checked in as it can have application/test secrets. But in this case it doesn't, so I have committed it.
     
 1. After cloning the project on your machine, run following from the project directory to install all the dependencies
 ```sh
