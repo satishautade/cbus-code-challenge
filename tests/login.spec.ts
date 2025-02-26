@@ -15,6 +15,8 @@ test('Orange HRM: Successful Login test', async ({ loginPage, page }) => {
   await loginPage.login('Admin', 'admin123');
   const dashboardPage = new DashboardPage(page);
   await expect(await dashboardPage.isCurrentPage()).toBeTruthy();
+  await loginPage.logout();
+  await expect(await loginPage.isCurrentPage('login')).toBeTruthy(); 
 });
 
 test('Orange HRM: Failed Login test', async ({ loginPage, page }) => {
