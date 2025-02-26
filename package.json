@@ -1,0 +1,25 @@
+{
+  "name": "cbus-code-challenge",
+  "version": "1.0.0",
+  "description": "Test Automation Code Challenge from Cbus Super",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test-ui": "npx playwright test --ui",
+    "report": "npx playwright show-report"
+  },
+  "keywords": [
+    "playwright",
+    "test",
+    "automation"
+  ],
+  "author": "Satish Autade",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
