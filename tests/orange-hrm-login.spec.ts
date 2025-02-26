@@ -21,4 +21,5 @@ test('Orange HRM: Failed Login test', async ({ loginPage, page }) => {
   await loginPage.login('wrongUser', 'wrongPassword');
   const dashboardPage = new DashboardPage(page);
   await expect(await dashboardPage.isCurrentPage()).toBeFalsy();
+  await loginPage.assertErrorOnPage('Invalid credentials');
 });

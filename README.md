@@ -1,6 +1,6 @@
 # Solution: 
 
-Given the limited time for the challenge, I focused on developing a few tests but implementing a feature rich test framework that lays strong foundations. This framework would make automating the remaining test scenarios pretty straight-forward. All we need to do it to follow the patterns and guidance available in the existing tests. 
+Given the limited time for the challenge, I focused on developing a few tests but implementing a feature rich test framework that lays strong foundations. This framework would make automating the remaining test scenarios pretty straight-forward. All we need to do is to follow the patterns and guidance available in the existing tests.
 
 ## Tools Used:
 

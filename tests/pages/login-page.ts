@@ -7,6 +7,7 @@ export class LoginPage extends BasePage{
   readonly inputUsername : Locator;
   readonly inputPassword: Locator;
   readonly buttonLogin: Locator;
+  readonly alertMessage: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -17,6 +18,7 @@ export class LoginPage extends BasePage{
     this.inputUsername = page.locator('css=input[name=username]');
     this.inputPassword = page.locator('css=input[name=password]');
     this.buttonLogin = page.locator('button[type=submit]');
+    this.alertMessage = page.locator('div.oxd-alert-content.oxd-alert-content--error > p');
   }
 
   async goto() {
@@ -36,6 +38,11 @@ export class LoginPage extends BasePage{
     await this.inputUsername.fill(username);
     await this.inputPassword.fill(password);
     await this.buttonLogin.click();
+  }
+
+  async assertErrorOnPage(errorMessage: string){
+    await expect(this.alertMessage).toBeVisible();
+    await expect(this.alertMessage).toHaveText(errorMessage);
   }
 
 }
