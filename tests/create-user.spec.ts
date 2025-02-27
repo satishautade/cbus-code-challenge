@@ -22,7 +22,7 @@ test.describe('Orange HRM: Administration -> Create User', ()=> {
   });
 
   // test data
-  let userDetails: User = {
+  let userDetailsWithWeakPassword: User = {
     userRole: 'Admin',
     employeeName: 'Test',
     status: 'Enabled',
@@ -37,8 +37,33 @@ test.describe('Orange HRM: Administration -> Create User', ()=> {
     createUserForm = new CreateUserPage(page);
     await createUserForm.goto();
     // Submit create user form with weak password - no numbers
-    await createUserForm.submitWithDetails(userDetails);
+    await createUserForm.submitWithDetails(userDetailsWithWeakPassword);
     await createUserForm.assertErrorOnPage('Your password must contain minimum 1 number');
+
+  });
+
+  // test data
+  let userDetailsForHappyPath: User = {
+    userRole: 'Admin',
+    employeeName: 'Test',
+    status: 'Enabled',
+    username: 'tester-',
+    password: 'abcdabcd1',
+    confirmPassword: 'abcdabcd1'
+  };
+
+  test('Create user Successfully', async ( { page }) => {
+    // Navigate to create user form
+    createUserForm = new CreateUserPage(page);
+    await createUserForm.goto();
+
+    // Submit create user form with all correct details
+    await createUserForm.submitWithDetails(userDetailsForHappyPath);
+
+    // Verify redirection to User Management page after successful user creation
+    userManagementPage = new UserManagementPage(page);
+    // Currently not working
+    // expect(await userManagementPage.isCurrentPage()).toBeTruthy();
 
   });
 

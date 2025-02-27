@@ -15,6 +15,7 @@ export class CreateUserPage extends BasePage {
   readonly inputPassword : Locator;
   readonly inputConfirmPassword: Locator;
   readonly errorMessagePassword: Locator;
+  readonly autocompleteDropdown: Locator;
   
   constructor(page: Page){
     super(page);
@@ -31,6 +32,9 @@ export class CreateUserPage extends BasePage {
     this.inputPassword = page.getByRole('textbox').nth(3);
     this.inputConfirmPassword = page.getByRole('textbox').nth(4);
     this.errorMessagePassword = page.locator('div.user-password-cell > div > span');
+    // this.autocompleteDropdown = page.locator('css=div.oxd-autocomplete-dropdown');
+    this.autocompleteDropdown = page.getByRole('listbox');
+
   }
 
   async goto() {
@@ -57,22 +61,25 @@ export class CreateUserPage extends BasePage {
     await this.optionWithName(userDetails.userRole).click();
     // Employee Name
     await this.inputEmployeeName.fill(userDetails.employeeName);
-    await this.inputEmployeeName.press('Enter');
+    expect(this.autocompleteDropdown).toBeVisible();
     await this.firstOption.click();
     // Status
     await this.dropdownStatus.click();
 
     await this.optionWithName(userDetails.status).click();
-    // Username
-    await this.inputUsername.fill(userDetails.username);
+    // Username with a random 4 digit to make it unique
+    await this.inputUsername.fill(this.appendRandomNumber(userDetails.username));
     // Password
     await this.inputPassword.fill(userDetails.password);
     await this.inputConfirmPassword.fill(userDetails.password);
     // Save
     await this.buttonSave.click();
-    
   }
 
+ private appendRandomNumber(value: string): string {
+    const randomNum = Math.floor(1000 + Math.random() * 9000); // Generates a 4-digit number
+    return `${value}${randomNum}`;
+  }
   
   async assertErrorOnPage(errorMessage: string){
     await expect(this.errorMessagePassword).toBeVisible();

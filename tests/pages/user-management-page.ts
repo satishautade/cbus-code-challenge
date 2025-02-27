@@ -25,10 +25,13 @@ export class UserManagementPage extends BasePage {
   }
 
   async isCurrentPage(): Promise<boolean> {
-    return await super.isCurrentPage('admin/viewSystemUsers')
+    // allow the page redirection to finish
+    await this.page.waitForTimeout(2000);
+    return super.isCurrentPage('admin/viewSystemUsers')
   }
 
   async navigateToCreateUserForm(){
     await this.buttonAddUser.click();
   }
+
 }

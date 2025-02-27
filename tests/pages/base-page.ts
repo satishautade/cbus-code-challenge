@@ -42,7 +42,10 @@ export class BasePage {
   // Verify currently given page is displayed
   async isCurrentPage(pageName: string): Promise<boolean> {
     const currentUrl = await this.page.url()
+    console.log ("CURRENT URL => " + currentUrl);
+    console.log ("EXPECTING PAGE => " + pageName);
     return currentUrl.includes(pageName);
+
   }
 
   // Logout from any page
