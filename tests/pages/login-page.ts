@@ -42,7 +42,7 @@ export class LoginPage extends BasePage{
 
   async assertErrorOnPage(errorMessage: string){
     await expect(this.alertMessage).toBeVisible();
-    await expect(this.alertMessage).toHaveText(errorMessage);
+    await expect(this.alertMessage).toHaveText(errorMessage)
   }
 
 }

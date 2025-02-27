@@ -41,7 +41,7 @@ npm run report
 
 ## Framework Structure: 
 
-This framework use [Page Object Model](https://playwright.dev/docs/pom) and follows standard playwright project structure as below: 
+This framework uses [Page Object Model](https://playwright.dev/docs/pom) and follows standard playwright project structure as below: 
 
 ```sh
 .
